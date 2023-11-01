@@ -2,7 +2,7 @@ import sys
 
 too_many_arguments_error = 'AssertionError: too many arguments'
 missing_argument_error = 'AssertionError: Missing argument'
-not_a_number_error = 'AssertionError: argument is not an integer'
+not_a_number_error = 'AssertionError: only integers'
 division_by_zero_error = 'ERROR (division by zero)'
 module_by_zero_error = 'ERROR (modulo by zero)'
 
