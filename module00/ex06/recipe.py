@@ -20,9 +20,9 @@ Please select an option:
 ''' + ENDC_COLOR
 wrong_input = FAIL_COLOR + '''\
 This option does not exist, please type the corresponding number.
-To exit, enter 5.\
+To exit, enter 5.\n\
 ''' + ENDC_COLOR
-empty_input = FAIL_COLOR + 'Empty input, please type the corresponding number.' + ENDC_COLOR
+empty_input = FAIL_COLOR + 'Empty input, please type the corresponding number.\n' + ENDC_COLOR
 
 # Add recipe prompts:
 add_recipe_name = BOLD_COLOR + '>>> Enter a name: ' + ENDC_COLOR
@@ -54,6 +54,9 @@ Recipe for {}:
 
 # Print recipe error messages:
 recipe_not_found = FAIL_COLOR + 'Recipe not found\n' + ENDC_COLOR
+
+# Print cookbook error messages:
+empty_cookbook = FAIL_COLOR + 'Cookbook is empty\n' + ENDC_COLOR
 
 # Delete recipe prompts:
 delete_recipe_prompt = BOLD_COLOR + '''\
@@ -129,25 +132,6 @@ def add_recipe():
     }
     print(recipe_added)
 
-def print_recipe():
-    '''A function to print a recipe from the cookbook. If the recipe is not found, print an error message and return to the menu.'''
-    print(print_recipe_prompt, end='')
-    recipe = input()
-    if len(recipe) == 0:
-        print(empty_recipe_name)
-        return
-    if recipe in cookbook:
-        print(recipe_output.format(recipe,
-                                   cookbook[recipe]['ingredients'],
-                                   cookbook[recipe]['meal'],
-                                   cookbook[recipe]['prep_time']))
-    else:
-        print(recipe_not_found)
-
-def print_cookbook():
-    print('Print the cookbook')
-
-
 def delete_recipe():
     '''A function to delete a recipe from the cookbook. If the recipe is not found, print an error message and return to the menu.'''
     print(delete_recipe_prompt, end='')
@@ -160,6 +144,30 @@ def delete_recipe():
         print(recipe_deleted)
     else:
         print(recipe_not_found)
+
+def print_recipe(recipe = None):
+    '''A function to print a recipe from the cookbook. If the recipe is not found, print an error message and return to the menu.'''
+    if recipe is None:
+        print(print_recipe_prompt, end='')
+        recipe = input()
+        if len(recipe) == 0:
+            print(empty_recipe_name)
+            return
+    if recipe in cookbook:
+        print(recipe_output.format(recipe,
+                                   cookbook[recipe]['ingredients'],
+                                   cookbook[recipe]['meal'],
+                                   cookbook[recipe]['prep_time']))
+    else:
+        print(recipe_not_found)
+
+def print_cookbook():
+    '''A function to print all recipes from the cookbook.'''
+    if len(cookbook) == 0:
+        print(empty_cookbook)
+        return
+    for recipe in cookbook:
+        print_recipe(recipe)
 
 def main():
     print(welcome_message)
