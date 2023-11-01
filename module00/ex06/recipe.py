@@ -81,7 +81,7 @@ cookbook = {
         "meal": 'lunch',
         "prep_time": 15
     }
-}
+} 
 
 def add_recipe():
     '''A function that add a recipe from user input. You will need a name, a list of ingredient, a meal type and a preparation time.'''
