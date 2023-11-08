@@ -1,8 +1,14 @@
 import sys
 import string
 
-not_a_string_error = 'AssertionError: argument is not a string'
-more_than_one_argument_error = 'AssertionError: more than one argument are provided'
+# Colors definition:
+OKGREEN_COLOR = '\033[92m'
+FAIL_COLOR = '\033[93m'
+BOLD_COLOR = '\033[1m'
+ENDC_COLOR = '\033[0m'
+
+not_a_string_error = FAIL_COLOR + 'AssertionError: argument is not a string' + ENDC_COLOR
+more_than_one_argument_error = FAIL_COLOR + 'AssertionError: more than one argument are provided' + ENDC_COLOR
 provide_a_string_prompt = 'What is the text to analyze?\n>> '
 
 count_result = '''The text contains {} character(s):
@@ -44,6 +50,7 @@ def text_analyzer(text = None):
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         text_analyzer(sys.argv[1])
+        exit(0)
     if len(sys.argv) > 2:
         print(more_than_one_argument_error)
     else:

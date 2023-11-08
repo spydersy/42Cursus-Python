@@ -47,7 +47,7 @@ print()
 print(ret)
 
 # # Test01
-# listy = range(10000)
+# listy = range(3333)
 # ret = 0
 # for elem in ft_progress(listy):
 #     ret += elem
